@@ -1,5 +1,7 @@
-Task Session 1
-🎯 Tugas
+# Task Session 1
+
+## 🎯 Tugas
+
 Implementasikan CRUD Kategori pada project API kalian.
 
 📦 Model

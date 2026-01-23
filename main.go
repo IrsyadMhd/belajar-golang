@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-// Produk represents a product in the cashier system
 type Produk struct {
 	ID    int    `json:"id"`
 	Nama  string `json:"nama"`
@@ -16,7 +15,6 @@ type Produk struct {
 	Stok  int    `json:"stok"`
 }
 
-// In-memory storage (sementara, nanti ganti database)
 var produk = []Produk{
 	{ID: 1, Nama: "Indomie Godog", Harga: 3500, Stok: 10},
 	{ID: 2, Nama: "Vit 1000ml", Harga: 3000, Stok: 40},
@@ -71,7 +69,7 @@ func main_old() {
 		})
 	})
 
-	fmt.Println("Server running di localhost:8080")
+	fmt.Println("Server berjalan di localhost:8080")
 
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
