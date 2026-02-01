@@ -38,6 +38,10 @@ func init() {
 }
 
 func main() {
+	// Debug: log config values
+	log.Printf("PORT: %s", config.Port)
+	log.Printf("DB_CONN length: %d", len(config.DBConn))
+
 	// Setup database
 	var err error
 	db, err = database.InitDB(config.DBConn)
