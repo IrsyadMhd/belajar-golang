@@ -1,7 +1,13 @@
 # Ignore everything
 *
 
-# Except these files
+# Except these files and folders
 !go.mod
 !go.sum
-!tugas_kategori.go
+!main.go
+!database/
+!models/
+!handlers/
+!services/
+!repositories/
+!.env
