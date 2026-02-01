@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/lib/pq"
+	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 func InitDB(connectionString string) (*sql.DB, error) {
@@ -16,8 +16,8 @@ func InitDB(connectionString string) (*sql.DB, error) {
 		log.Fatal("DB_CONN environment variable is empty!")
 	}
 
-	// Open database
-	db, err := sql.Open("postgres", connectionString)
+	// Open database menggunakan pgx driver
+	db, err := sql.Open("pgx", connectionString)
 	if err != nil {
 		log.Printf("sql.Open error: %v", err)
 		return nil, err
@@ -28,7 +28,7 @@ func InitDB(connectionString string) (*sql.DB, error) {
 	db.SetMaxIdleConns(5)
 	db.SetConnMaxLifetime(5 * time.Minute)
 
-	// Test connection with timeout
+	// Test connection
 	log.Println("Testing database connection...")
 	err = db.Ping()
 	if err != nil {
