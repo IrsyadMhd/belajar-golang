@@ -71,6 +71,25 @@ func main() {
 	http.HandleFunc("/api/categories/", categoryHandler.HandleCategoryByID)
 
 	// ============================================
+	// Setup Transaction
+	// ============================================
+	transactionRepo := repositories.NewTransactionRepository(db)
+	transactionService := services.NewTransactionService(transactionRepo)
+	transactionHandler := handlers.NewTransactionHandler(transactionService)
+
+	http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout) // POST
+
+	// ============================================
+	// Setup Report
+	// ============================================
+	reportRepo := repositories.NewReportRepository(db)
+	reportService := services.NewReportService(reportRepo)
+	reportHandler := handlers.NewReportHandler(reportService)
+
+	http.HandleFunc("/api/report/hari-ini", reportHandler.HandleDailyReport) // GET
+	http.HandleFunc("/api/report", reportHandler.HandleReport)              // GET dengan parameter ?start_date=&end_date=
+
+	// ============================================
 	// Health check endpoint
 	// ============================================
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
